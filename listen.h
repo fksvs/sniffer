@@ -10,8 +10,8 @@
 #define UDP_FLAG 16
 #define ALL 31
 
-void output(char *buffer,int flag);
-int listen_data(int sockfd,int flag);
+void output(char *buffer, int flag);
+int listen_data(int sockfd, int flag);
 int init_socket();
 
 #endif
