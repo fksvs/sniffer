@@ -3,11 +3,11 @@ Raw socket packet sniffer
 
 ### supported protocols ###
 
-    - ethernet
-    - ip
-    - icmp
-    - tcp
-    - udp
+- ethernet
+- ip
+- icmp
+- tcp
+- udp
 
 ### you can use options to show only spesified protocols
 
