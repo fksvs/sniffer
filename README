@@ -17,6 +17,9 @@ to show on spesific protocols you can use options
     -t, for tcp packets
     -u, for udp packets
 
+compile:
+    make
+
 example usage:
 
     ./sniff -i -t (to listen only ip and tcp packets)
