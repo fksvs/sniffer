@@ -1,7 +1,7 @@
 Raw socket packet sniffer
--------------------------
+--
 
-supported protocols:
+### supported protocols:
 
     -ethernet
     -ip
@@ -9,7 +9,7 @@ supported protocols:
     -tcp
     -udp
 
-to show on spesific protocols you can use options
+### to show on spesific protocols you can use options
 
     -e, for ethernet packets
     -c, for icmp packets
@@ -17,9 +17,9 @@ to show on spesific protocols you can use options
     -t, for tcp packets
     -u, for udp packets
 
-compile:
+### compile:
     make
 
-example usage:
+### example usage:
 
     ./sniff -i -t (to listen only ip and tcp packets)
