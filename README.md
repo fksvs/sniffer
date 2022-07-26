@@ -1,15 +1,15 @@
 Raw socket packet sniffer
 --
 
-### supported protocols:
+### supported protocols ###
 
-    -ethernet
-    -ip
-    -icmp
-    -tcp
-    -udp
+    - ethernet
+    - ip
+    - icmp
+    - tcp
+    - udp
 
-### to show on spesific protocols you can use options
+### you can use options to show only spesified protocols
 
     -e, for ethernet packets
     -c, for icmp packets
