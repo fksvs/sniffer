@@ -50,7 +50,7 @@ int listen_data(int sockfd, int flag)
 		}
 		output(buffer, flag);
 	}
-	return 1;
+	return 0;
 }
 
 int init_socket()

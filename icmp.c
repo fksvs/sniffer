@@ -10,8 +10,8 @@ void icmp_packet(char *buffer)
 	struct icmphdr *icmph =
 		(struct icmphdr *)(buffer + sizeof(struct ethhdr) +
 				   (iph->ihl) * 4);
-	char type[50];
-	memset(type, 0, sizeof(type));
+	char type[32];
+	memset(type, 0, 32);
 
 	switch ((unsigned int)(icmph->type)) {
 	case 0:
