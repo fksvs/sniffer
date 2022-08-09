@@ -1,7 +1,8 @@
 CC = gcc
 CFLAGS = -Wall
 
-SOURCES = main.c listen.c eth.c icmp.c ip.c tcp.c udp.c
+SOURCES = src/main.c src/listen.c\
+	  src/eth.c src/icmp.c src/ip.c src/tcp.c src/udp.c
 OBJECTS = $(SOURCES:.c=.o)
 TARGET = sniff
 
