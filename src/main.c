@@ -3,29 +3,29 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include "listen.h"
+#include "error_func.h"
 #include "eth.h"
 #include "icmp.h"
 #include "ip.h"
 #include "tcp.h"
 #include "udp.h"
 
-void start_sniff(int flag)
-{
-	int sockfd;
+int sockfd;
+int flag = 0;
 
-	if (flag == 0)
-		flag |= ALL;
-	if ((sockfd = init_socket()) == -1)
-		exit(EXIT_FAILURE);
-	if (listen_data(sockfd, flag) == -1)
-		exit(EXIT_FAILURE);
+void print_usage()
+{
+	printf("\nusage : sniff [protocol]\n\n\
+ -e : ethernet\n\
+ -c : icmp\n\
+ -i : ip\n\
+ -t : tcp\n\
+ -u : udp\n\n");
+	exit(EXIT_FAILURE);
 }
 
-int parser(int argc, char *argv[])
+void parser(int argc, char *argv[])
 {
-	char *usage = " usage : sniff [options]\n\
- -e : ethernet\n -c : icmp\n -i : ip\n -t : tcp\n -u : udp";
-	int flag = 0;
 	int opt;
 
 	while ((opt = getopt(argc, argv, "ecituh")) != -1) {
@@ -46,23 +46,20 @@ int parser(int argc, char *argv[])
 			flag |= UDP_FLAG;
 			break;
 		case 'h':
-			printf("%s\n", usage);
-			exit(0);
+			print_usage();
 		}
 	}
-	return flag;
+
+	if (flag == 0) flag |= ALL;
 }
 
 int main(int argc, char *argv[])
 {
-	int flag;
+	if (getuid()) err_exit("permission denied.");
 
-	if (getuid() != 0) {
-		printf("Operation not permitted\n");
-		exit(0);
-	}
-	flag = parser(argc, argv);
-	start_sniff(flag);
+	parser(argc, argv);
+	sockfd = init_socket();
+	listen_data(sockfd, flag);
 
 	return 0;
 }

@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <net/ethernet.h>
 #include "listen.h"
+#include "error_func.h"
 #include "eth.h"
 #include "icmp.h"
 #include "ip.h"
@@ -45,7 +47,7 @@ int listen_data(int sockfd, int flag)
 		memset(buffer, 0, BUFF_SIZE);
 		total = recvfrom(sockfd, buffer, BUFF_SIZE, 0, NULL, NULL);
 		if (total < 0 || total == 0) {
-			perror("[ERROR] [listen.c listen_data() recvfrom()] ");
+			err_msg("listen.c", "listen_data", __LINE__, errno);
 			return -1;
 		}
 		output(buffer, flag);
@@ -57,7 +59,7 @@ int init_socket()
 {
 	int sockfd;
 	if ((sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) < 0) {
-		perror("[ERROR] [listen.c init_socket socket] ");
+		err_msg("listen.c", "init_socket", __LINE__, errno);
 		return -1;
 	}
 	return sockfd;
