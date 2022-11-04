@@ -26,6 +26,7 @@ void icmp_packet(char *buffer)
         if (icmph->type == 17) strcpy(type_str, "address mask request");
         if (icmph->type == 18) strcpy(type_str, "address mask reply");
 
-	printf("icmp     | type:%d-%s code:%d\n", (unsigned int)(icmph->type),
-	       type_str, (unsigned int)(icmph->code));
+	printf("icmp     | ");
+	printf("type:%d (%s) ", icmph->type, type_str);
+	printf("code:%d\n", icmph->code);
 }

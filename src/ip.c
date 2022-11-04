@@ -19,12 +19,13 @@ void ip_header(char *buffer)
 	dst.sin_addr.s_addr = iph->daddr;
 
 	printf("ipv%d     | ", iph->version);
-	printf("%s", inet_ntoa(src.sin_addr));
+	printf("%s ", inet_ntoa(src.sin_addr));
 	printf(" --> ");
-	printf("%s", inet_ntoa(dst.sin_addr));
-	printf(" serv:%d ttl:%d protocol:%d len:%d\n", (unsigned int)(iph->tos),
-	       (unsigned int)(iph->ttl), (unsigned int)(iph->protocol),
-	       (unsigned int)(iph->tot_len));
+	printf("%s ", inet_ntoa(dst.sin_addr));
+	printf("serv:%d ", iph->tos);
+	printf("ttl:%d ", iph->ttl);
+	printf("proto:%d ", iph->protocol);
+	printf("len:%d\n", iph->tot_len);
 }
 
 int get_protocol(char *buffer)

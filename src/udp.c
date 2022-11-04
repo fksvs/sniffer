@@ -10,6 +10,9 @@ void udp_header(char *buffer)
 	struct udphdr *udph = (struct udphdr *)(buffer + sizeof(struct ethhdr) +
 						(iph->ihl) * 4);
 
-	printf("udp      | %d --> %d len:%d\n", ntohs(udph->source),
-	       ntohs(udph->dest), ntohs(udph->len));
+	printf("udp      | ");
+	printf("%d", ntohs(udph->source));
+	printf(" --> ");
+	printf("%d ", ntohs(udph->dest));
+	printf("len:%d\n", ntohs(udph->len));
 }

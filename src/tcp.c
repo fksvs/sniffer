@@ -20,8 +20,13 @@ void tcp_header(char *buffer)
         if (tcph->ack) strcat(flag_str, "ack,");
         if (tcph->urg) strcat(flag_str, "urg,");
 
-	printf("tcp      | %d --> %d seq:%u ack:%u flag:%s win:%d len:%d\n",
-	       ntohs(tcph->source), ntohs(tcph->dest), ntohl(tcph->seq),
-	       ntohl(tcph->ack_seq), flag_str, ntohs(tcph->window),
-	       (unsigned int)(tcph->doff) * 4);
+	printf("tcp      | ");
+	printf("%d", ntohs(tcph->source));
+	printf(" --> ");
+	printf("%d ", ntohs(tcph->dest));
+	printf("seq:%u ", ntohl(tcph->seq));
+	printf("ack:%u ", ntohl(tcph->ack_seq));
+	printf("flag:%s ", flag_str);
+	printf("win:%d ", ntohs(tcph->window));
+	printf("len:%d\n", (tcph->doff) * 4);
 }
